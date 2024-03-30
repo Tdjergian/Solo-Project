@@ -1,19 +1,29 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
   
 
 const HomePage = props => {
+    const [ words, setWords ] = useState('');
+    let navigate = useNavigate();
 
     useEffect(()=>{
         fetch('/api/')
     .then(res => res.json())
-    .then(res => console.log(res))
+    .then(res => setWords(res))
     }, []);
   
+    function reRoute () { 
+        navigate('/');
+     }
     
 
     return (
         <div>
-        This is the Home page
+            {words}
+            <button onClick={reRoute}>
+                back
+            </button>
+        
         </div>
     )
 };

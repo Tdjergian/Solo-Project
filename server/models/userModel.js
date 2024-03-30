@@ -4,28 +4,26 @@ const mongoose = require('mongoose');
 const { mode } = require('../../webpack.config');
 
 console.log(
-    'connecting to database'
+  'connecting to database'
 )
 
 mongoose.connect(MONGO_URI, {
-    useNewURLParser: true, 
-    useUnifiedTopology: true,
-    dbName: 'Solo Project'
+  useNewURLParser: true, 
+  useUnifiedTopology: true,
+  dbName: 'Solo Project'
 })
-    .then(()=> console.log('Connected to Mongo DB.'))
-    .catch(err => console.log('error'));
+  .then(()=> console.log('Connected to Mongo DB.'))
+  .catch(err => console.log('error'));
 
 
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    username: String,
-    passwordHash: String, 
+  username: String,
+  password: String, 
 
 
 });
 
 const User = mongoose.model('user', userSchema);
-module.exports = {
-    User
-}
+module.exports = User;

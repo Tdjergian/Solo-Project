@@ -29,14 +29,14 @@ module.exports = {
     }, 
     devServer: {
         static: {
-            directory: path.join(__dirname, './build')
+            directory: path.join(__dirname, '/client'),
+            publicPath: '/'
         },
         historyApiFallback: true, 
         port: 8181,
         proxy: [{
-            context: ['/api'], 
-            target: 'http://localhost:8181',
-            router: () => 'http://localhost:3000'
+            context: ['/'], 
+            target: 'http://localhost:3000',
         }]
 
     },
