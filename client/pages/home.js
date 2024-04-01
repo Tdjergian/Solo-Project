@@ -11,7 +11,10 @@ const HomePage = props => {
     const loggedIn = useSelector(state => state.verification.loggedIn);
    
     useEffect(()=>{
-        fetch('/login')
+        fetch('/login',{
+            method: 'POST',
+            body: JSON.stringify()
+        })
     .then(res => res.json())
     .then(res =>{
       if(res === 'true'){
