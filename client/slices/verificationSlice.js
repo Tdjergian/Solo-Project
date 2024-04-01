@@ -6,7 +6,7 @@ export const ticketSlice = createSlice({
         loggedIn : false,
     }, 
     reducers: {
-        verifyUser : ()=>{
-          
+        verifyUser : (state, action)=>{
+              state.loggedIn = true;
         }
       
