@@ -8,5 +8,6 @@ export const ticketSlice = createSlice({
     reducers: {
         verifyUser : (state, action)=>{
               state.loggedIn = true;
+                console.log('user has been verified')        
         }
       
