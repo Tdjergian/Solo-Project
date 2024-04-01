@@ -20,8 +20,12 @@ app.post('/login', verifyUser, setSSID, createSession, (req, res)=>{
 });
 
 app.post('/newUser', createUser, setSSID, createSession, (req, res)=>{
-    restart.status(200).send()
-})
+    res.status(200).send();
+});
+
+app.get('/home/:username', verifySession, queryData, (req, res)=>{
+    res.status(200).send();
+}
 
 app.get('/api', (req, res)=>{
     // console.log('sent json')
