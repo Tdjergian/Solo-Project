@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';  
-import { login } from '../slices/verificationSlice.js';
+import { verifyUser } from '../slices/verificationSlice.js';
 
 
 
@@ -15,8 +15,11 @@ const HomePage = props => {
     .then(res => res.json())
     .then(res =>{
       if(res === 'true'){
-        useDispatch(login())
-    })
+        useDispatch(verifyUser())
+    }else {
+          navigate('/');
+    }
+        )
     }, []);
   
     function reRoute () { 
