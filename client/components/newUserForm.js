@@ -19,8 +19,8 @@ export default function SignUpBox (props) {
     }
 
     function requestNewUser(e) { 
-        // console.log(username, password  )
-        fetch('/newUser', {
+        console.log(username, password  )
+        fetch('/newuser', {
             method: 'POST', 
             body: JSON.stringify({username:username, password:password}),
             headers: {'Content-Type': 'application/json' }

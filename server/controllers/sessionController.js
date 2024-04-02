@@ -4,6 +4,7 @@ const sessionController = {};
 
 sessionController.createSession = async (req, res, next)=>{
   const { username } = req.body;
+  console.log('in createSession');
 
   try {
     const user = await User.findOne({username:username});
@@ -19,12 +20,13 @@ sessionController.createSession = async (req, res, next)=>{
 sessionController.verifySession = async (req, res, next)=>{
   const ssid = req.cookies.ssid;
   try{
-    const session = Session.findOne({cookieID : ssid});
+    const session = await Session.findOne({cookieID : ssid}).exec();
+    console.log(session)
     if(session === null){
       console.log('not verified');
-      next({error: 'no valid session'})
+      next({errorMessage: 'no valid session'})
     }else {
-      console.log('user verified')
+      // console.log('session verified')
       next();
     }
   }

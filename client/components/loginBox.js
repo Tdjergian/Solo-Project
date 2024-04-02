@@ -19,14 +19,14 @@ export default function LoginBox (props) {
     }
 
     function requestLogin(e) { 
-        // console.log(username, password  )
+        console.log(username, password  )
         fetch('/login', {
             method: 'POST', 
             body: JSON.stringify({username:username, password:password}),
             headers: {'Content-Type': 'application/json' }
         })
           .then(res =>{
-            // console.log(res)
+            console.log(res)
             navigate('/home')
           })
           .catch(err=>{console.log(err)})

@@ -10,7 +10,7 @@ console.log(
 mongoose.connect(MONGO_URI, {
   useNewURLParser: true, 
   useUnifiedTopology: true,
-  dbName: 'Solo Project'
+  dbName: 'SoloProject'
 })
   .then(()=> console.log('Connected to Mongo DB.'))
   .catch(err => console.log('error'));

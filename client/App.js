@@ -13,7 +13,7 @@ const App = props => {
             <Routes>
                 <Route path="/" element= {<LoginPage />} />
                 <Route path="home" element = {<HomePage />} />
-                {/* <Route path='signup' element = {<SignUpPage />} /> */}
+                <Route path='signup' element = {<SignUpPage />} />
             </Routes>
         </BrowserRouter>
     

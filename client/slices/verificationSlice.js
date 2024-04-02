@@ -9,8 +9,13 @@ export const verificationSlice = createSlice({
         verifyUser : (state, action)=>{
               state.loggedIn = true;
                 console.log('user has been verified')        
+        },
+        unverifyUser: (state, action)=>{
+            state.loggedIn = false;
+            console.log('user is no longer verified')
         }
-    });
+    }
+});
 
 export const { verifyUser } = verificationSlice.actions;
 export default verificationSlice.reducer;
