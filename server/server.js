@@ -27,6 +27,10 @@ app.get('/home/:username', verifySession, queryData, (req, res)=>{
     res.status(200).send();
 }
 
+app.get('/home', (req, res)=>{
+    res.status(200).json('verified')
+})
+
 app.get('/api', (req, res)=>{
     // console.log('sent json')
     res.status(262).json('hi tom its nick')

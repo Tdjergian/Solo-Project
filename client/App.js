@@ -8,7 +8,6 @@ import HomePage from "./pages/home";
 const App = props => {
     return (
         <BrowserRouter>
-            
             <Routes>
                 <Route path="/" element= {<LoginPage />} />
                 <Route path="home/:username" element = {<HomePage />} />
