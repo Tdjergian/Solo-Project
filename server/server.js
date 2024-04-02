@@ -23,13 +23,13 @@ app.post('/newUser', createUser, setSSID, createSession, (req, res)=>{
     res.status(200).send();
 });
 
-app.get('/home/:username', verifySession, queryData, (req, res)=>{
-    res.status(200).send();
-}
+// app.get('/home/:username', verifySession, (req, res)=>{
+//     res.status(200).send();
+// });
 
-app.get('/home', (req, res)=>{
-    res.status(200).json('verified')
-})
+// app.get('/home', (req, res)=>{
+//     res.status(200).json('verified')
+// })
 
 app.get('/api', (req, res)=>{
     // console.log('sent json')
@@ -44,4 +44,4 @@ app.use((err, req, res, next) => {
     res.status(500).send({ error: err });
   });
 
-app.listen(3000);
+app.listen(4000);

@@ -6,7 +6,7 @@ userController.createUser = async (req, res, next)=>{
     const { username, password } = req.body;
 
     if(username && password){
-        User.create({username, password})
+        User.create({username:username, password:password})
           .then(user => next() )
     }else(next({errorMessage:'invalid newUser format'}))
    

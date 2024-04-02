@@ -2,7 +2,7 @@ import React, { useState} from "react";
 import { useNavigate } from "react-router";
 
 
-export default function LoginBox (props) {
+export default function SignUpBox (props) {
     const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
