@@ -9,6 +9,7 @@ import SignUpPage from "./pages/signUp";
 const App = props => {
     return (
         <BrowserRouter>
+            
             <Routes>
                 <Route path="/" element= {<LoginPage />} />
                 <Route path="home" element = {<HomePage />} />

@@ -7,7 +7,7 @@ sessionController.createSession = async (req, res, next)=>{
 
   try {
     const user = await User.findOne({username:username});
-    await Session.create({cookieID: user._id});
+    const session = await Session.create({cookieID: user._id});
     next();
 
   }
