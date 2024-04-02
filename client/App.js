@@ -14,6 +14,7 @@ const App = props => {
                 <Route path="/" element= {<LoginPage />} />
                 <Route path="home" element = {<HomePage />} />
                 <Route path='signup' element = {<SignUpPage />} />
+                <Route path = '*' element = {<div> This is the 404 error message </div>}
             </Routes>
         </BrowserRouter>
     
