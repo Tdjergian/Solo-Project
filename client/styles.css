@@ -1,26 +1,32 @@
 
 #loginBox {
-  
+  background-color: blue,
+  display: flex-box
 }
 
 #newTicketForm {
-  
+  background-color: blue,
+  display: flex-box
 }
 
 #newUserForm {
-  
+  background-color: blue,
+  display: flex-box
 }
 
 #ticket {
-  
+  background-color: blue,
+  display: flex-box
 }
 
 #ticketDisplay {
-  
+  background-color: blue,
+  display: flex-box
 }
 
 .mainbutton {
-  
+  background-color: blue,
+  display: flex-box
 }
 
 
