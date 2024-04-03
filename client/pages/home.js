@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch, useRef } from 'react-redux';  
 import { verifyUser } from '../slices/verificationSlice.js';
+import NewTicketForm from '../components/newTicketForm.js';
+import TicketDisplay from '../components/ticketDisplay.js';
 
 
 
@@ -15,6 +17,7 @@ const HomePage = props => {
     useEffect(()=>{
         fetch('/verify')
         .then(res => {
+          console.log(res.status)
           if(res.status === 200){
           dispatch(verifyUser())
           }else {
@@ -39,7 +42,13 @@ const HomePage = props => {
     }else {
       return (
       <div>
-          {/* {words} */}
+        <div>
+          <NewTicketForm/>
+        </div>
+        <div>
+          <TicketDisplay/>
+        </div>
+
           <button onClick={reRoute}>
               back
           </button>

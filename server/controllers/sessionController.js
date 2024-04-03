@@ -21,7 +21,7 @@ sessionController.verifySession = async (req, res, next)=>{
   const ssid = req.cookies.ssid;
   try{
     const session = await Session.findOne({cookieID : ssid}).exec();
-    console.log(session)
+    // console.log(session)
     if(session === null){
       console.log('not verified');
       next({errorMessage: 'no valid session'})

@@ -7,7 +7,9 @@ const path = require('path');
 const { createUser, verifyUser } = require('./controllers/userController.js');
 const { setSSID } = require('./controllers/cookieController.js');
 const { createSession, verifySession } = require('./controllers/sessionController.js');
+const { addTicket } = require('./controllers/ticketController.js');
 const cookieParser = require('cookie-parser');
+console.log(typeof addTicket)
 
 
 app.use(express.json());
@@ -41,6 +43,10 @@ app.get('/api', (req, res)=>{
     // console.log('sent json')
     res.status(262).json('hi tom its nick')
     
+});
+
+app.post('/ticket', addTicket, (req, res)=>{
+    res.status(200).send();
 });
 
 

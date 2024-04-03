@@ -35,7 +35,7 @@ module.exports = {
         historyApiFallback: true, 
         port: 8181,
         proxy: [{
-            context: ['/login', '/api', '/newuser', '/verify'], 
+            context: ['/login', '/api', '/newuser', '/verify', '/ticket'], 
             target: 'http://localhost:3000',
         }]
 

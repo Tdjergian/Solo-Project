@@ -6,7 +6,7 @@ cookieController.setSSID = (req, res, next)=>{
     console.log('in setSSID')
     User.findOne({username:username})
         .then(user => {
-            res.cookie('ssid', user._id);
+            res.cookie('ssid', user._id, {httpOnly: true});
             next();
         })
         .catch(err => next(err))
