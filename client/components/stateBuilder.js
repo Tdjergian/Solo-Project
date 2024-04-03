@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'; 
 import { populateTickets } from '../slices/ticketSlice';
 
-export default function stateBuilder(props){
+export default function StateBuilder(props){
  const dispatch = useDispatch()
   useEffect(()=>{
     const fetchTickets = async ()=>{
@@ -18,5 +18,5 @@ export default function stateBuilder(props){
     fetchTickets();
   }, []);
 
-  return null;
+  return (<></>);
 }
