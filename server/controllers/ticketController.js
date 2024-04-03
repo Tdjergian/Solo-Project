@@ -19,6 +19,19 @@ ticketController.addTicket = async (req, res, next)=>{
     catch (err){
        next(err);
     }
+};
+
+ticketController.getTickets = async (req, res, next)=>{
+    const ssid = req.cookies.ssid;
+    try{
+        const user = await User.findOne({ _id : ssid }).populate('tickets');
+        const tickets = user.tickets;
+        res.locals.tickets = tickets;
+        next();
+    }
+    catch(err){
+        next(err);
+    }
 }
 
 module.exports = ticketController;
