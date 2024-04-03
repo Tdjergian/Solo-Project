@@ -24,8 +24,11 @@ ticketController.addTicket = async (req, res, next)=>{
 ticketController.getTickets = async (req, res, next)=>{
     const ssid = req.cookies.ssid;
     try{
+        console.log('in getTickets controller')
         const user = await User.findOne({ _id : ssid }).populate('tickets');
+        console.log(user)
         const tickets = user.tickets;
+        console.log(tickets
         res.locals.tickets = tickets;
         next();
     }
