@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'; 
-import { addTicket } from '../slices/ticketSlice';
+import { populateTickets } from '../slices/ticketSlice';
 
 export default function stateBuilder(props){
  const dispatch = useDispatch()
@@ -9,9 +9,7 @@ export default function stateBuilder(props){
       try{
         const response = await fetch('./ticket');
         const tickets = await response.json();
-        tickets.forEach(ticket=>{
-          dispacth(addTicket(ticket));
-        })
+        dispatch(populateTickets(tickets))
       }
       catch(err){
         console.log(err);
