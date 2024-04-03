@@ -7,10 +7,14 @@ export const ticketSlice = createSlice({
         addTicket: (state, action) => {
             state.push(action.payload);
             console.log('ticket added');
+        }, 
+        populateTickets: (state,action) => {
+            state = action.payload;
+            console.log('state populated')
         }
     }
 
 });
 
-export const { addTicket } = ticketSlice.actions;
+export const { addTicket, populateTickets } = ticketSlice.actions;
 export default ticketSlice.reducer;
