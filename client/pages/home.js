@@ -4,6 +4,7 @@ import { useSelector, useDispatch, useRef } from 'react-redux';
 import { verifyUser } from '../slices/verificationSlice.js';
 import NewTicketForm from '../components/newTicketForm.js';
 import TicketDisplay from '../components/ticketDisplay.js';
+import StateBuilder from '../components/stateBuilder.js'
 
 
 
@@ -41,18 +42,20 @@ const HomePage = props => {
     )
     }else {
       return (
-      <div>
-        <div>
-          <NewTicketForm/>
-        </div>
-        <div>
-          <TicketDisplay/>
-        </div>
-
-          <button onClick={reRoute}>
-              back
-          </button>
-      </div>
+      <>
+          <StateBuilder>
+            <div>
+              <NewTicketForm/>
+            </div>
+            <div>
+              <TicketDisplay/>
+            </div>
+        
+              <button onClick={reRoute}>
+                  back
+              </button>
+          </StateBuilder>
+      </>
     )
   }
 };
