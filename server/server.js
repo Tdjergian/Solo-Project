@@ -7,7 +7,7 @@ const path = require('path');
 const { createUser, verifyUser } = require('./controllers/userController.js');
 const { setSSID } = require('./controllers/cookieController.js');
 const { createSession, verifySession } = require('./controllers/sessionController.js');
-const { addTicket } = require('./controllers/ticketController.js');
+const { addTicket, getTickets } = require('./controllers/ticketController.js');
 const cookieParser = require('cookie-parser');
 console.log(typeof addTicket)
 
@@ -49,7 +49,9 @@ app.post('/ticket', addTicket, (req, res)=>{
     res.status(200).send();
 });
 
-
+app.get('/ticket', getTickets, (req, res)={
+    res.status(200).json(res.locals.tickets);
+}
 
 app.use((err, req, res, next) => {
     console.log(err);
