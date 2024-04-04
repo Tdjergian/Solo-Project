@@ -52,7 +52,7 @@ ticketController.deleteTicket = async (req, res, next)=>{
         next(err);
     }
 };
-ticketController.addcComment = async (req, res, next)=>{
+ticketController.addComment = async (req, res, next)=>{
     console.log('in addComment controller');
     const newComment = req.body
     const ticket_id = req.params._id;
