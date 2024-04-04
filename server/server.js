@@ -1,4 +1,3 @@
-//Test
 
 const express = require('express');
 const app = express();
@@ -7,7 +6,7 @@ const path = require('path');
 const { createUser, verifyUser } = require('./controllers/userController.js');
 const { setSSID } = require('./controllers/cookieController.js');
 const { createSession, verifySession } = require('./controllers/sessionController.js');
-const { addTicket, getTickets, deleteTicket } = require('./controllers/ticketController.js');
+const { addTicket, getTickets, deleteTicket, addComment } = require('./controllers/ticketController.js');
 const cookieParser = require('cookie-parser');
 console.log(typeof addTicket)
 
@@ -43,6 +42,10 @@ app.get('/api', (req, res)=>{
     // console.log('sent json')
     res.status(262).json('hi tom its nick')
     
+});
+
+app.post('/ticket/comment/:_id', addComment, (req, res)=>{
+    res.status(200).json(res.locals.updatedTickets)
 });
 
 
