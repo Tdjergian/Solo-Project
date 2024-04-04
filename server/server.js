@@ -50,7 +50,7 @@ app.post('/ticket', addTicket, (req, res)=>{
     res.status(200).json(res.locals.newticket);
 });
 
-app.delete('/ticket/:_id', deleteTicket, (req, res)=>{
+app.delete('/ticket/delete/:_id', deleteTicket, (req, res)=>{
     res.status(200).json(res.locals.updatedTickets)
 })
 
