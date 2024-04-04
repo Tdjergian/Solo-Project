@@ -7,7 +7,7 @@ const path = require('path');
 const { createUser, verifyUser } = require('./controllers/userController.js');
 const { setSSID } = require('./controllers/cookieController.js');
 const { createSession, verifySession } = require('./controllers/sessionController.js');
-const { addTicket } = require('./controllers/ticketController.js');
+const { addTicket, getTickets, deleteTicket } = require('./controllers/ticketController.js');
 const cookieParser = require('cookie-parser');
 console.log(typeof addTicket)
 
@@ -32,7 +32,7 @@ app.post('/newuser', createUser, setSSID, createSession, (req, res)=>{
 
 app.get('/verify', verifySession, (req, res)=>{
     // console.log('session was verified')
-    res.status(200).json('true');
+    res.status(200).send();
 })
 
 // app.get('/home', (req, res)=>{
@@ -45,9 +45,19 @@ app.get('/api', (req, res)=>{
     
 });
 
+
 app.post('/ticket', addTicket, (req, res)=>{
-    res.status(200).send();
+    res.status(200).json(res.locals.newticket);
 });
+
+app.delete('/ticket/:_id', deleteTicket, (req, res)=>{
+    res.status(200).json(res.locals.updatedTickets)
+})
+
+app.get('/ticket', getTickets, (req, res)=>{
+    res.status(200).json(res.locals.tickets)
+})
+
 
 
 

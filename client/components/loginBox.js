@@ -26,10 +26,10 @@ export default function LoginBox (props) {
             headers: {'Content-Type': 'application/json' }
         })
           .then(res =>{
-            console.log(res)
+            // console.log(res)
             navigate('/home')
           })
-          .catch(err=>{console.log(err)})
+          .catch(err=>{console.log('error in login request', err)})
         setPassword('');
         setUsername('');
         

@@ -8,11 +8,11 @@ export const verificationSlice = createSlice({
     reducers: {
         verifyUser : (state, action)=>{
               state.loggedIn = true;
-                console.log('user has been verified')        
+                // console.log('user has been verified')        
         },
         unverifyUser: (state, action)=>{
             state.loggedIn = false;
-            console.log('user is no longer verified')
+            // console.log('user is no longer verified')
         }
     }
 });

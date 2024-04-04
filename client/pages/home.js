@@ -18,7 +18,7 @@ const HomePage = props => {
     useEffect(()=>{
         fetch('/verify')
         .then(res => {
-          console.log(res.status)
+          // console.log(res.status)
           if(res.status === 200){
           dispatch(verifyUser())
           }else {
@@ -43,7 +43,7 @@ const HomePage = props => {
     }else {
       return (
       <>
-        <StateBuilder>
+        <StateBuilder></StateBuilder>
           <div>
             <NewTicketForm/>
           </div>
@@ -54,7 +54,7 @@ const HomePage = props => {
             <button onClick={reRoute}>
                 back
             </button>
-        </StateBuilder>
+        
       </>
     )
   }

@@ -1,5 +1,6 @@
 import React, { useState} from "react";
-import { useDispatch } from "redux-redux";
+import { useDispatch } from "react-redux";
+import { addTicket } from "../slices/ticketSlice";
 
 
 export default function NewTicketForm (props){
@@ -25,10 +26,11 @@ export default function NewTicketForm (props){
                 'Content-Type': 'application/json'
             }
         })
-            .then(res => res.json)
-            .then(ticket =>{
-                
-            })
+        .then(res => res.json())
+        .then(ticket => {
+            console.log('ticket:', ticket)
+            dispatch(addTicket(ticket))
+        })
     }
 
   return (
