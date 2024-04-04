@@ -52,4 +52,20 @@ ticketController.deleteTicket = async (req, res, next)=>{
         next(err);
     }
 };
+ticketController.addcComment = async (req, res, next)=>{
+    console.log('in addComment controller');
+    const newComment = req.body
+    const ticket_id = req.params._id;
+    const user_id = req.cookies.ssid;
+    try{
+        await Ticket.updateOne({_id: ticket_id}, {$push: {comments: newComment}});
+        const updatedUser = await User.findOne({_id: user_id}).populate('tickets');
+        const updatedTickets - updatedUser.tickets;
+        res.locals.updatedTickets = updatedTickets;
+        next();
+    }
+    catch(err){
+        next(err);
+    }
+};
 module.exports = ticketController;
