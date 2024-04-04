@@ -1,7 +1,11 @@
 import React, { useState} from "react";
+import { useDispatch } from "redux-redux";
+
 
 export default function NewTicketForm (props){
     const [formState, setFormState] = useState({title:'', status:'', tags:[]})
+    const dispatch = useDispatch();
+
 
     const handleChange = (e)=>{
         // console.log(formState)
@@ -21,8 +25,9 @@ export default function NewTicketForm (props){
                 'Content-Type': 'application/json'
             }
         })
-            .then(res => {
-                setFormState({title:'', status:'', tags:[]})
+            .then(res => res.json)
+            .then(ticket =>{
+                
             })
     }
 

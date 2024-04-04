@@ -5,8 +5,12 @@ export const ticketSlice = createSlice({
     initialState: [], 
     reducers: {
         addTicket: (state, action) => {
-            state.tickets++;
+            state.push(action.payload);
             console.log('ticket added');
+        }, 
+        populateTickets: (state,action) => {
+            state = action.payload;
+            console.log('state populated')
         }
     }
 
