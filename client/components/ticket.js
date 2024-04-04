@@ -30,7 +30,7 @@ export default function Ticket({ title, status, tags, comments, _id }){
     }
 
     const deleteTicket = (e)=>{
-        fetch(`./ticket/${_id}`, {
+        fetch(`./ticket/delete/${_id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
