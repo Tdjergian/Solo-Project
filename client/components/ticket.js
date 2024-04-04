@@ -15,6 +15,20 @@ export default function Ticket({ title, status, tags, comments, _id }){
     //     tagSection.push(<div>{tag}</div>)
     // });
 
+    const addComment = (e)=>{
+        const newComment = e.target.value;
+        fetch(`./ticket/comment/${_id}`, {
+            method: 'POST',
+            heaters: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(updatedTickets => {
+            dispatch(populateTickets(updatedTickets))  
+        })
+    }
+
     const deleteTicket = (e)=>{
         fetch(`./ticket/${_id}`, {
             method: 'DELETE',
@@ -33,12 +47,16 @@ export default function Ticket({ title, status, tags, comments, _id }){
 
     return (
         <> 
+            -----------------------------------------
             <div>{title}</div>
             <div>{status}</div>
             <div>{commentSection}</div>
             <div>{tagSection}</div>
-            <button onClick={deleteTicket}>Delete</button>
-            
+            <input className='newCommentInput' placeholder='add comment' />
+            <div>
+                <button className='deleteTicketButton' onClick={deleteTicket}>Delete</button>
+            </div>
+            ------------------------------------------
         </>
     )
 };
