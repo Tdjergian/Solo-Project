@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { Button } from "react-bootstrap";
+
 
 
 
@@ -28,7 +30,7 @@ export default function SignUpBox (props) {
         })
           .then(res =>{
             // console.log(res)
-            navigate('/home')
+            navigate('/')
           })
           .catch(err=>{console.log(err)})
         setPassword('');
@@ -51,7 +53,7 @@ export default function SignUpBox (props) {
             <input placeholder="password" id="passwordField" onChange={handleChange} value={password}/>
             </div>
 
-            <button onClick={requestNewUser}>Create New User</button>
+            <Button onClick={requestNewUser}>Create New User</Button>
 
         </>
     )

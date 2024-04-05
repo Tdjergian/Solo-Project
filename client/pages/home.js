@@ -22,13 +22,13 @@ const HomePage = props => {
           if(res.status === 200){
           dispatch(verifyUser())
           }else {
-          navigate('/');
+          navigate('/signin');
           } 
         
     }, [])});
   
     function reRoute () { 
-        navigate('/');
+        navigate('/signin');
      }
     
    
@@ -42,7 +42,9 @@ const HomePage = props => {
     )
     }else {
       return (
-      <>
+        
+      <div className='home'>
+      
         <StateBuilder></StateBuilder>
           <div>
             <NewTicketForm/>
@@ -50,12 +52,8 @@ const HomePage = props => {
           <div>
             <TicketDisplay/>
           </div>
-
-            <button onClick={reRoute}>
-                back
-            </button>
         
-      </>
+      </div>
     )
   }
 };

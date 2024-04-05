@@ -1,6 +1,7 @@
 import React, { useState} from "react";
 import { useDispatch } from "react-redux";
 import { addTicket } from "../slices/ticketSlice";
+import { Button, Container, Row, Col } from "react-bootstrap";
 
 
 export default function NewTicketForm (props){
@@ -34,19 +35,24 @@ export default function NewTicketForm (props){
     }
 
   return (
-    <>
-      {/* <form method = 'POST' action='/ticket'> */}
-        {/* <input name="department" type="text" placeholder="department"></input> */}
-        <input id="title" type="text" placeholder="title" onChange={handleChange} value={formState.title}></input>
-        <select id="status" type="text" onChange={handleChange} value={formState.status}>
-          <option value="new">New</option>
-          <option value="open">Open</option>
-          <option value="pending">Pending</option>
-        </select>
-        {/* <input name="customStatus" type="text" placeholder="Custom Status (optional)"></input> */}
+    <Container style={{ marginBottom:'20px', padding:'5px'}}>
+      <Row className="gx-1">
+        <Col className="my-1">
+          <input id="title" type="text" placeholder="title" onChange={handleChange} value={formState.title}></input>
+        </Col>
+        <Col className="my-1">
+          <select style={{height: 30}} id="status" type="text" placeholder="status" onChange={handleChange} value={formState.status}>
+            <option value="none">Select Status</option>
+            <option value="new">New</option>
+            <option value="open">Open</option>
+            <option value="pending">Pending</option>
+          </select>
+        </Col >
+        <Col className="my-1">
         <input id="tags" type="text" placeholder="Tags" multiple></input>
-        <button onClick={submitForm}>Create Ticket</button>
-      {/* </form> */}
-    </>
+        </Col>
+      </Row>
+        <Button onClick={submitForm}>Create Ticket</Button>
+    </Container>
   )
 }

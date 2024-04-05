@@ -7,7 +7,7 @@ const path = require('path');
 const { createUser, verifyUser } = require('./controllers/userController.js');
 const { setSSID } = require('./controllers/cookieController.js');
 const { createSession, verifySession } = require('./controllers/sessionController.js');
-const { addTicket, getTickets, deleteTicket } = require('./controllers/ticketController.js');
+const { addTicket, getTickets, deleteTicket, addComment } = require('./controllers/ticketController.js');
 const cookieParser = require('cookie-parser');
 console.log(typeof addTicket)
 
@@ -45,19 +45,25 @@ app.get('/api', (req, res)=>{
     
 });
 
+app.post('/ticket/comment/:_id', addComment, (req, res)=>{
+    res.status(200).json(res.locals.updatedTickets);
+
+});
+
+
+
+
+app.delete('/ticket/delete/:_id', deleteTicket, (req, res)=>{
+    res.status(200).json(res.locals.updatedTickets)
+});
+
+app.get('/ticket', getTickets, (req, res)=>{
+    res.status(200).json(res.locals.tickets)
+});
 
 app.post('/ticket', addTicket, (req, res)=>{
     res.status(200).json(res.locals.newticket);
 });
-
-app.delete('/ticket/:_id', deleteTicket, (req, res)=>{
-    res.status(200).json(res.locals.updatedTickets)
-})
-
-app.get('/ticket', getTickets, (req, res)=>{
-    res.status(200).json(res.locals.tickets)
-})
-
 
 
 

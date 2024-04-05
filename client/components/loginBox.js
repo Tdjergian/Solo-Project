@@ -1,5 +1,6 @@
 import React, { useState} from "react";
 import { useNavigate } from "react-router";
+import { Button } from "react-bootstrap";
 
 
 export default function LoginBox (props) {
@@ -27,7 +28,7 @@ export default function LoginBox (props) {
         })
           .then(res =>{
             // console.log(res)
-            navigate('/home')
+            navigate('/')
           })
           .catch(err=>{console.log('error in login request', err)})
         setPassword('');
@@ -48,7 +49,7 @@ export default function LoginBox (props) {
             <input placeholder="password" id="passwordField" onChange={handleChange} value={password}/>
             </div>
 
-            <button onClick={requestLogin}>Login</button>
+            <Button onClick={requestLogin}>Login</Button>
 
         </>
     )
