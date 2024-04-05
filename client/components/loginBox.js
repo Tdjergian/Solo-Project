@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import { useNavigate } from "react-router";
-import { Button } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 
 
 export default function LoginBox (props) {
@@ -38,7 +38,7 @@ export default function LoginBox (props) {
 
 
     return (
-        <>
+        <Container>
             <div>
                 Username
             <input placeholder="username" id="usernameField" onChange={handleChange} value={username} />
@@ -51,6 +51,6 @@ export default function LoginBox (props) {
 
             <Button onClick={requestLogin}>Login</Button>
 
-        </>
+        </Container>
     )
 }

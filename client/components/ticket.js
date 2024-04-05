@@ -8,6 +8,7 @@ import { Button, Card, Container } from "react-bootstrap";
 export default function Ticket({ title, status, tags, comments, _id }){
     const commentSection = [];
     const [comment, setComment] = useState('');
+    const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     console.log('comments:', comments)
 
@@ -40,6 +41,7 @@ export default function Ticket({ title, status, tags, comments, _id }){
         })
     };
 
+
     const addComment = (e)=>{
 
         fetch(`./ticket/comment/${_id}`, {
@@ -56,11 +58,13 @@ export default function Ticket({ title, status, tags, comments, _id }){
         setComment('');
     }
 
+    const toggleOpen = (e)=>{
+        setOpen(!open);
+    }
 
-
-    return (
-        <Card border="primary" style={{width:'18rem', marginBottom:'20px', backgroundColor: 'rgba(0,0,0,0.1)'}}> 
-            <Card.Title className="text-center">{title}</Card.Title>
+    let ticketInfo;
+    if(open){
+        ticketInfo = <>
             <Card.Header>Status: {status}</Card.Header>
             <Card.Body className="text-center">{commentSection}</Card.Body>
             <div>{tagSection}</div>
@@ -69,7 +73,15 @@ export default function Ticket({ title, status, tags, comments, _id }){
             <Container className="justify-content-center">
                 <Button variant="dark" className='deleteTicketButton' onClick={deleteTicket}>Delete</Button>
             </Container>
-            
+        </>
+    }else {
+        ticketInfo = null
+    }
+
+    return (
+        <Card border="primary" style={{width:'18rem', marginBottom:'20px', backgroundColor: 'rgba(0,0,0,0.1)'}}> 
+            <Card.Title className="text-center" onClick={toggleOpen}>{title}</Card.Title>
+            {ticketInfo}
         </Card>
     )
 };

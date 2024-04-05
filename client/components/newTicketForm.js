@@ -31,6 +31,7 @@ export default function NewTicketForm (props){
         .then(ticket => {
             console.log('ticket:', ticket)
             dispatch(addTicket(ticket))
+            setFormState({title:'', status:'', tags:[]})
         })
     }
 
