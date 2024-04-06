@@ -97,7 +97,6 @@ export default function Ticket({ title, status, tags, comments, _id }){
                         </select>
                     </Col>
                 </Row>
-               
             </Card.Header>
             <Card.Body className="text-center">{commentSection}</Card.Body>
             <div>{tagSection}</div>
