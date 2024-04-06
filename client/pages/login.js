@@ -2,6 +2,7 @@ import React from 'react';
 import LoginBox from '../components/loginBox';
 import {  Button } from 'react-bootstrap';
 import { useNavigate } from "react-router";
+import { motion } from 'framer-motion';
 
 const LoginPage = props => {
     console.log('login page')
@@ -12,10 +13,11 @@ const LoginPage = props => {
         navigate('/signup')
     }
 
+    const MotionButton = motion(Button);
     return (
         <>
             <LoginBox />
-            <Button onClick={goToSignUp}> Create new account </Button>
+            <MotionButton  onClick={goToSignUp}> Create new account </MotionButton>
 
         </>
     )

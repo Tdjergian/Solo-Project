@@ -3,29 +3,31 @@ import { useDispatch } from 'react-redux';
 import { populateTickets } from '../slices/ticketSlice';
 // import { set } from "mongoose";
 import { Button, Card, Container, Row, Col, Form } from "react-bootstrap";
+import { motion } from 'framer-motion';
 
 
 export default function Ticket({ title, status, tags, comments, _id }){
-    const commentSection = [];
-    const [comment, setComment] = useState('');
+   
+    // const comment = useRef('');
+    // const comment = '';
     const [open, setOpen] = useState(false);
     const [newStatus, setNewStatus] = useState('');
     const dispatch = useDispatch();
     console.log('comments:', comments)
 
+    const commentSection = [];
     comments.forEach(comment => {
         commentSection.push(<Card.Text>{comment}</Card.Text>)
     });
 
     const tagSection = [];
-    console.log('tags:', tags)
     tags.forEach(tag => {
         tagSection.push(<Card.Text>{tag}</Card.Text>)
     });
 
     const handleChange = (e)=>{
-        setComment(e.target.value);
-        console.log('comment:', comment)
+        comment.current = e.target.value;
+        // setComment(e.target.value);
     }
 
     const deleteTicket = (e)=>{
@@ -62,10 +64,12 @@ export default function Ticket({ title, status, tags, comments, _id }){
     }
 
     const addComment = (e)=>{
+        const comment = document.querySelector('#newCommentInput')
+        console.log('comment:', comment.value)
 
         fetch(`./ticket/comment/${_id}`, {
             method: 'POST',
-            body: JSON.stringify({comment: comment}),
+            body: JSON.stringify({comment: comment.value}),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -74,16 +78,19 @@ export default function Ticket({ title, status, tags, comments, _id }){
         .then(updatedTickets => {
             dispatch(populateTickets(updatedTickets))  
         });
-        setComment('');
+        // setComment('');
     }
 
     const toggleOpen = (e)=>{
         setOpen(!open);
     }
 
+    const MotionCard = motion(Card);
+
     let ticketInfo;
     if(open){
-        ticketInfo = <>
+        ticketInfo = 
+        <>
             <Card.Header>
                 <Row>
                     <Col>
@@ -108,7 +115,7 @@ export default function Ticket({ title, status, tags, comments, _id }){
                 {tagSection}
             </Card.Body>
             {/* <div>{tagSection}</div> */}
-            <input className='newCommentInput' placeholder='add comment' value={comment} onChange={handleChange} />
+            <input id='newCommentInput' placeholder='add comment' />
             <Button variant="secondary" className='addCommentButton' onClick={addComment}>Add Comment</Button>
             <Container className="justify-content-center">
                 <Button variant="dark" className='deleteTicketButton' onClick={deleteTicket}>Delete</Button>
@@ -117,11 +124,11 @@ export default function Ticket({ title, status, tags, comments, _id }){
     }else {
         ticketInfo = null
     }
-
+    // initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}transition={{ duration: 0.5 }}
     return (
-        <Card border="primary" style={{width:'18rem', marginBottom:'20px', backgroundColor: 'rgba(0,0,0,0.1)'}}> 
+        <MotionCard initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}  border="primary" style={{width:'18rem', marginBottom:'20px', backgroundColor: 'rgba(0,0,0,0.1)'}}> 
             <Card.Title className="text-center" onClick={toggleOpen}>{title}</Card.Title>
             {ticketInfo}
-        </Card>
+        </MotionCard>
     )
 };
