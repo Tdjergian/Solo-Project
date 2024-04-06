@@ -18,9 +18,10 @@ export default function Ticket({ title, status, tags, comments, _id }){
     });
 
     const tagSection = [];
-    // tags.forEach(tag => {
-    //     tagSection.push(<div>{tag}</div>)
-    // });
+    console.log('tags:', tags)
+    tags.forEach(tag => {
+        tagSection.push(<Card.Text>{tag}</Card.Text>)
+    });
 
     const handleChange = (e)=>{
         setComment(e.target.value);
@@ -98,8 +99,15 @@ export default function Ticket({ title, status, tags, comments, _id }){
                     </Col>
                 </Row>
             </Card.Header>
-            <Card.Body className="text-center">{commentSection}</Card.Body>
-            <div>{tagSection}</div>
+            <Card.Body className="text-center">
+                Comments
+                {commentSection}
+            </Card.Body>
+            <Card.Body>
+                Tags
+                {tagSection}
+            </Card.Body>
+            {/* <div>{tagSection}</div> */}
             <input className='newCommentInput' placeholder='add comment' value={comment} onChange={handleChange} />
             <Button variant="secondary" className='addCommentButton' onClick={addComment}>Add Comment</Button>
             <Container className="justify-content-center">

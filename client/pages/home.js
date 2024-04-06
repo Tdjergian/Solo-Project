@@ -5,6 +5,7 @@ import { verifyUser } from '../slices/verificationSlice.js';
 import NewTicketForm from '../components/newTicketForm.js';
 import TicketDisplay from '../components/ticketDisplay.js';
 import StateBuilder from '../components/stateBuilder.js';
+import StatusContainer from '../components/statusContainer.js';
 import { Button, Card, Container, Row, Col, Form } from "react-bootstrap";
 
 
@@ -52,7 +53,7 @@ const HomePage = props => {
             <NewTicketForm/>
           </div>
           <div>
-            <TicketDisplay/>
+            <StatusContainer/>
           </div>
         
       </div>

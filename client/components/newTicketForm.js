@@ -6,6 +6,7 @@ import { Button, Container, Row, Col } from "react-bootstrap";
 
 export default function NewTicketForm (props){
     const [formState, setFormState] = useState({title:'', status:'', tags:[]})
+    const [currentTag, setCurrentTag] = useState('');
     const dispatch = useDispatch();
 
 
@@ -17,6 +18,12 @@ export default function NewTicketForm (props){
             setFormState({...formState, status: e.target.value})
         }
         // console.log(formState)
+    }
+
+    const addTag = (e)=>{
+        console.log('formState:', formState)
+        setFormState({...formState, tags: [...formState.tags, currentTag]})
+        setCurrentTag('')
     }
 
     const submitForm = (e)=>{
@@ -35,8 +42,13 @@ export default function NewTicketForm (props){
         })
     }
 
+    const tags = [];
+    formState.tags.forEach(tag => {
+        tags.push(<div>{tag}</div>)
+    });
+
   return (
-    <Container style={{ marginBottom:'20px', padding:'5px'}}>
+    <Container fluid style={{ marginBottom:'20px', marginLeft:'20px', padding:'5px'}}>
       <Row className="gx-1">
         <Col className="my-1">
           <input id="title" type="text" placeholder="title" onChange={handleChange} value={formState.title}></input>
@@ -50,7 +62,9 @@ export default function NewTicketForm (props){
           </select>
         </Col >
         <Col className="my-1">
-        <input id="tags" type="text" placeholder="Tags" multiple></input>
+          {tags}
+        <input id="tags" type="text" placeholder="Tags" value={currentTag} onChange={(e)=>{setCurrentTag(e.target.value)}}></input>
+        <button onClick={addTag}>add tag</button>
         </Col>
       </Row>
         <Button onClick={submitForm}>Create Ticket</Button>

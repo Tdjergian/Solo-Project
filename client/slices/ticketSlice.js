@@ -2,17 +2,25 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const ticketSlice = createSlice({
     name: 'tickets', 
-    initialState: {tickets:[]}, 
+    initialState: {tickets:{
+        new:[],
+        open:[],
+        pending:[]
+    }}, 
     reducers: {
         addTicket: (state, action) => {
-            state.tickets.push(action.payload);
+            state.tickets[action.payload.status].push(action.payload);
             // console.log('ticket added');
         }, 
         populateTickets: (state,action) => {
-            // console.log('this is the original state', state)
-            // console.log('this is the action payload', action.payload)
-            state.tickets = action.payload;
-            // console.log('this is the populated state', state)
+            const allTickets = action.payload;
+            state.tickets.new = [];
+            state.tickets.open = [];
+            state.tickets.pending = [];
+            allTickets.forEach(ticket => {
+                state.tickets[ticket.status].push(ticket);
+            });
+            
         }
     }
 

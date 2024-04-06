@@ -10,19 +10,22 @@ import { Button, Card, Container, Row, Col, Form } from "react-bootstrap";
 export default function StatusContainer({ }){
 
     const ticketState = useSelector(state=> state.tickets.tickets);
-    
+
 
     return (
-        <Container className='status-containers'>
-            <Row>
-                <Col>
-                    <TicketDisplay statusType='open' id='new-tickets-display'/>
+        <Container border='primary' className='status-containers'>
+            <Row xs={1} md={2} lg={3} className='gx-1'>
+                <Col style={{ border: '1px solid #000000' }}>
+                    New Tickets
+                    <TicketDisplay statusType='new' id='new-tickets-display'/>
                 </Col>
-                <Col>
-                    <TicketDisplay statusType='open' id='open-tickets-display' />
+                <Col style={{ border: '1px solid #000000' }}>
+                Open tickets
+                    <TicketDisplay   statusType='open' id='open-tickets-display' />
                 </Col>
-                <Col>
-                    <TicketDisplay statusType='open' id='pending-tickets-display' />
+                <Col style={{ border: '1px solid #000000' }}>
+                Pending Tickets
+                    <TicketDisplay  statusType='pending' id='pending-tickets-display' />
                 </Col>
             </Row>
            
