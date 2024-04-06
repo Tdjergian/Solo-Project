@@ -2,20 +2,21 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { populateTickets } from '../slices/ticketSlice';
 // import { set } from "mongoose";
-import { Button, Card, Container } from "react-bootstrap";
+import { Button, Card, Container, Row, Col, Form } from "react-bootstrap";
 
 
 export default function Ticket({ title, status, tags, comments, _id }){
     const commentSection = [];
     const [comment, setComment] = useState('');
     const [open, setOpen] = useState(false);
+    const [newStatus, setNewStatus] = useState('');
     const dispatch = useDispatch();
     console.log('comments:', comments)
 
     comments.forEach(comment => {
         commentSection.push(<Card.Text>{comment}</Card.Text>)
     });
-    // const _id = key;
+
     const tagSection = [];
     // tags.forEach(tag => {
     //     tagSection.push(<div>{tag}</div>)
@@ -41,6 +42,23 @@ export default function Ticket({ title, status, tags, comments, _id }){
         })
     };
 
+    const changeStatus = (e)=>{
+        console.log('new status:', e.target.value, typeof e.target.value)
+
+        // setNewStatus('hello');
+        console.log('newStatus:', newStatus)
+        fetch(`./ticket/status/${_id}`, {
+            method: 'PUT',
+            body: JSON.stringify({status: e.target.value}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(updatedTickets => {
+            dispatch(populateTickets(updatedTickets))
+        });
+    }
 
     const addComment = (e)=>{
 
@@ -65,7 +83,22 @@ export default function Ticket({ title, status, tags, comments, _id }){
     let ticketInfo;
     if(open){
         ticketInfo = <>
-            <Card.Header>Status: {status}</Card.Header>
+            <Card.Header>
+                <Row>
+                    <Col>
+                        Status: {status}
+                    </Col>
+                    <Col>
+                        <select type='text' onChange={changeStatus}>
+                            <option value=''>Update Status</option>
+                            <option value='new'>New</option>
+                            <option value='open'>Open</option>
+                            <option value='pending'>Pending</option>
+                        </select>
+                    </Col>
+                </Row>
+               
+            </Card.Header>
             <Card.Body className="text-center">{commentSection}</Card.Body>
             <div>{tagSection}</div>
             <input className='newCommentInput' placeholder='add comment' value={comment} onChange={handleChange} />

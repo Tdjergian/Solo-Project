@@ -69,4 +69,25 @@ ticketController.addComment = async (req, res, next)=>{
         next(err);
     }
 };
+
+ticketController.updateStatus = async (req, res, next)=>{
+    console.log('in updateStatus controller');
+    console.log('req.body:', req.body);
+    const newStatus = req.body.status;
+    const ticket_id = req.params._id;
+    const user_id = req.cookies.ssid;
+    console.log('newStatus:', newStatus);
+    try{
+        const updatedTicket = await Ticket.findOneAndUpdate({_id: ticket_id}, {status: newStatus});
+        console.log('updated ticket:', updatedTicket)
+        const updatedUser = await User.findOne({_id: user_id}).populate('tickets');
+        const updatedTickets = updatedUser.tickets;
+        res.locals.updatedTickets = updatedTickets;
+        next();
+        
+    }
+    catch(err){
+        next(err);
+    }
+};
 module.exports = ticketController;
